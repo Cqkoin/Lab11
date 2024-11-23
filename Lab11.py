@@ -52,7 +52,8 @@ def assignment_statistics(assignments, submissions, assignment_name):
         print("Assignment not found")
         return
     assignment_id, _ = assignments[assignment_name]
-    scores = [percent for _, aid, percent in submissions if aid == assignment_id]
+    relevant_submissions = [submission for submission in submissions if submission[1] == assignment_id]
+    scores = [submission[2] for submission in relevant_submissions]
     print(f"Min: {min(scores):.0f}%")
     print(f"Avg: {sum(scores)/len(scores):.0f}%")
     print(f"Max: {max(scores):.0f}%")
@@ -61,9 +62,11 @@ def display_assignment_graph(assignments, submissions, assignment_name):
     if assignment_name not in assignments:
         print("Assignment not found")
         return
+
     assignment_id, _ = assignments[assignment_name]
-    scores = [percent for _, aid, percent in submissions if aid == assignment_id]
-    plt.hist(scores, bins=[50, 60, 70, 80, 90, 100])
+    relevant_submissions = [submission for submission in submissions if submission[1] == assignment_id]
+    scores = [submission[2] for submission in relevant_submissions]
+    plt.hist(scores, bins=[50,55, 60,65, 70,75, 80,85, 90,95, 100])
     plt.show()
 
 # Main program
