@@ -54,9 +54,12 @@ def assignment_statistics(assignments, submissions, assignment_name):
     assignment_id, _ = assignments[assignment_name]
     relevant_submissions = [submission for submission in submissions if submission[1] == assignment_id]
     scores = [submission[2] for submission in relevant_submissions]
-    print(f"Min: {min(scores):.0f}%")
-    print(f"Avg: {sum(scores)/len(scores):.0f}%")
-    print(f"Max: {max(scores):.0f}%")
+    min_score = min(scores)
+    avg_score = sum(scores) // len(scores)
+    max_score = max(scores)
+    print(f"Min: {min_score:.0f}%")
+    print(f"Avg: {avg_score:.0f}%")
+    print(f"Max: {max_score:.0f}%")
 
 def display_assignment_graph(assignments, submissions, assignment_name):
     if assignment_name not in assignments:
